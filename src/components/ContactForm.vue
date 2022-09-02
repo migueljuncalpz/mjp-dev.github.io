@@ -6,13 +6,13 @@ export default{
       contact:{ 
         name:'',
         email:'',
-        message:'',
+        message:''
       }
     }),
     methods:{
-      async saveContact(){
+      async saveContact() {
         const res = await sendContact(this.contact);
-        alert(res);
+        console.log(res)
       }
     },
 }
