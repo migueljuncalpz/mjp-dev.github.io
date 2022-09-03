@@ -1,5 +1,4 @@
 <template>
-  <HeaderVue></HeaderVue>
   <Navbar></Navbar>
   <router-view v-slot="{ Component }">
     <transition enter-active-class="animate__animated animate__fadeInLeft" name="fade" mode="in-out">
@@ -10,7 +9,6 @@
 
 <script>
   import Navbar from '@/components/NavbarItem';
-  import HeaderVue from '@/components/HeaderItem'
   import FooterVue from './components/FooterItem';
   import ContainerVue   from '@/components/ContainerItem'
 
@@ -19,7 +17,6 @@
     data:()=>({}),
     components:{
       Navbar,
-      HeaderVue,
       FooterVue,
       ContainerVue,
     }
@@ -40,6 +37,7 @@ html, body {
 }
 
 #app{
+  margin:0;
   font-family: Montserrat, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

@@ -3,16 +3,19 @@ import { sendContact } from '@/services/ContactService';
 export default{
     name:'ContactForm',
     data:()=>({
+      conditional:true,
       contact:{ 
         name:'',
         email:'',
         message:''
-      }
+      },
+      response:{}
     }),
     methods:{
       async saveContact() {
         const res = await sendContact(this.contact);
-        console.log(res)
+        this.response=res.data;
+        this.conditional=false
       }
     },
 }
@@ -20,18 +23,25 @@ export default{
 </script>
 
 <template>
-  <form  @submit.prevent="saveContact()">
-    <input name="nombre" v-model="contact.name" type="nombre" class="feedback-input" placeholder="Nombre" required/>   
-    <input name="email" v-model="contact.email" type="email" class="feedback-input" placeholder="Email" required/>
-    <textarea name="mensaje" v-model="contact.message" class="feedback-input" placeholder="Mensaje" required></textarea>
-    <input id="submit" type="submit" name="submitBtn" />
-  </form>    
+  <div v-if="this.conditional">
+    <form  @submit.prevent="saveContact()">
+      <input name="nombre" v-model="contact.name" type="nombre" class="feedback-input" placeholder="Nombre" required/>   
+      <input name="email" v-model="contact.email" type="email" class="feedback-input" placeholder="Email" required/>
+      <textarea name="mensaje" v-model="contact.message" class="feedback-input" placeholder="Mensaje" required></textarea>
+      <input id="submit" type="submit" name="submitBtn" />
+    </form>
+  </div>
+  <div v-else class=" greeting ">
+    <transition enter-active-class="animate__animated animate__fadeInLeft" name="fade" mode="in-out">
+      <h1>Gracias {{response.name}} por ponerte en contacto!</h1>
+    </transition>
+  </div>
 </template>
 
 <style  lang="scss">
 
 $primary: hsl(222,80%,50%);
-.greeting,
+
 form{
     padding:1rem 2rem;
     padding-bottom: 3rem;
@@ -73,10 +83,16 @@ textarea {
   margin-top:-4px;
   font-weight:700;
 }
+
 [type="submit"]:hover { background:ghostwhite; color: black;}
 
 .greeting{
-  backdrop-filter:blur(2px)
+  background-color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+  border-radius: 1rem;
+  padding: 1rem 1rem;
+  width: 80%;
 }
+
 
 </style>

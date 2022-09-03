@@ -16,12 +16,12 @@ export default{
 <template>
   <div onclick="" v-for="card in cards" v-bind:key="card.name" class="card" >
     <div class="front" v-bind:style="{ 'background-image': 'url(' + card.img_url + ')' }">
-      <h3>{{card.name}}</h3>
-      <h6>{{card.tecnology}}</h6>
+      <h4>{{card.name}}</h4>
+      <h6>{{card.technology}}</h6>
     </div>
     <div onclick="" class="back">
       <div>
-        <h4>{{card.description}}</h4>
+        <h5>{{card.description}}</h5>
         <button class="button">GitHub</button>
       </div>
     </div>
@@ -112,7 +112,7 @@ $orange: hsl(50,80%,50%);
     transform: rotateY(-180deg);
   }
 
-  h5,h3{
+  h4,h3{
     background-color: rgba(0,0,0,0.3);
     backdrop-filter: blur(2px);
     border-radius: inherit;
@@ -136,7 +136,7 @@ $orange: hsl(50,80%,50%);
     
     &:before {
       box-shadow: 0 0 10px 10px rgba($primary, 0.25);
-    background-color: rgba($primary, 0.25);
+      background-color: rgba($primary, 0.25);
     }
   }
   
