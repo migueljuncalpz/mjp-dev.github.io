@@ -4,9 +4,12 @@ const mongoose = require('mongoose')
 const { path } = require('express/lib/application');
 const morgan = require('morgan');
 
+require("dotenv").config()
+
 const app = express();
 
-mongoose.connect('mongodb://127.0.0.1:27017/portfolio_db') // Database connection
+console.log("user:"+process.env.DB_PASSWD);
+mongoose.connect( `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWD}@${process.env.DB_HOST}/${process.env.DB_NAME}`) // Database connection
     .then(db => console.log('Conected to '+db.connection.name))
     .catch(err => console.log(err));
 

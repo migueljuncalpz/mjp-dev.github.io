@@ -12,7 +12,6 @@ export default{
 }
 
 </script>
-
 <template>
   <div onclick="" v-for="card in cards" v-bind:key="card.name" class="card" >
     <div class="front" v-bind:style="{ 'background-image': 'url(' + card.img_url + ')' }">
@@ -21,7 +20,7 @@ export default{
     </div>
     <div onclick="" class="back">
       <div>
-        <h5>{{card.description}}</h5>
+        <h6>{{card.description}}</h6>
         <button class="button">GitHub</button>
       </div>
     </div>
@@ -30,7 +29,7 @@ export default{
 
 <style scoped lang="scss">
 
-$primary: hsl(222,80%,50%);
+$primary: rgb(0, 0, 1);
 $primary-light: hsl(222,50%,95%);
 
 $secondary: hsl(350,80%,50%);
@@ -81,7 +80,7 @@ $orange: hsl(50,80%,50%);
   backface-visibility: hidden;
   transform-style: preserve-3d;
   transition: ease-in-out 600ms;
-  // overflow: hidden;
+  overflow: hidden;
 }
 
 .front {
@@ -112,17 +111,12 @@ $orange: hsl(50,80%,50%);
     transform: rotateY(-180deg);
   }
 
-  h4,h3{
-    background-color: rgba(0,0,0,0.3);
+  h4,h6{
+    background-color: rgba($primary, 0.50);
     backdrop-filter: blur(2px);
     border-radius: inherit;
   }
-  h3{
-    padding: 1rem;
-  }
-  h6{
-    background-color: rgba(0,0,89,0.4);
-  }
+  
 }
 
 .back {
@@ -152,7 +146,7 @@ $orange: hsl(50,80%,50%);
     
     &:before {
       box-shadow: 0 0 10px 10px rgba($secondary, 0.25);
-    background-color: rgba($secondary, 0.25);
+      background-color: rgba($secondary, 0.25);
     }
   }
   }
@@ -161,7 +155,6 @@ $orange: hsl(50,80%,50%);
     transform: rotateY(0deg);
   }
 }
-
 .button {
   $height: 40px;
   transform: translateZ($height);
@@ -177,7 +170,7 @@ $orange: hsl(50,80%,50%);
   position: relative;
   transform-style: preserve-3d;
   transition: 300ms ease;
-  
+
   &:before {
   transition: 300ms ease;
     position: absolute;
@@ -191,8 +184,7 @@ $orange: hsl(50,80%,50%);
     border-radius: 100px;
     left: 10px;
     top: 16px;
-  }
-  
+  } 
   &:hover {
     transform: translateZ($height + 15px);
     
@@ -200,7 +192,6 @@ $orange: hsl(50,80%,50%);
       transform: translateZ(-($height + 15px));
     }
   }
-  
   &:active {
     transform: translateZ($height/2);
     
@@ -210,5 +201,4 @@ $orange: hsl(50,80%,50%);
     }
   }
 }
-
 </style>

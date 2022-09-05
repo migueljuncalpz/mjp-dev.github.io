@@ -4,6 +4,7 @@ export default{
     name:'ContactForm',
     data:()=>({
       conditional:true,
+      submitBtnColorRed:true,
       contact:{ 
         name:'',
         email:'',
@@ -11,11 +12,24 @@ export default{
       },
       response:{}
     }),
+    mounted(){
+      document.getElementById("submit_btn").addEventListener("click",this.checkRequiredValues)
+    },  
     methods:{
       async saveContact() {
         const res = await sendContact(this.contact);
         this.response=res.data;
         this.conditional=false
+      },
+      checkRequiredValues(){
+        var name_input = document.getElementById("name");
+        var email_input = document.getElementById("email");
+        var message_input = document.getElementById("message");
+        if(name_input.value.length!=0 && email_input.value.length!=0 && message_input.value.length!=0){
+          this.submitBtnColorRed=false;
+          return
+        }
+        this.submitBtnColorRed=true;
       }
     },
 }
@@ -25,15 +39,16 @@ export default{
 <template>
   <div v-if="this.conditional">
     <form  @submit.prevent="saveContact()">
-      <input name="nombre" v-model="contact.name" type="nombre" class="feedback-input" placeholder="Nombre" required/>   
-      <input name="email" v-model="contact.email" type="email" class="feedback-input" placeholder="Email" required/>
-      <textarea name="mensaje" v-model="contact.message" class="feedback-input" placeholder="Mensaje" required></textarea>
-      <input id="submit" type="submit" name="submitBtn" />
+      <input id="name" name="nombre" v-model="contact.name" type="nombre" class="feedback-input" placeholder="Nombre" required/>   
+      <input id="email" name="email" v-model="contact.email" type="email" class="feedback-input" placeholder="Email" required/>
+      <textarea id="message" name="mensaje" v-model="contact.message" class="feedback-input" placeholder="Mensaje" required></textarea>
+      <button v-if="this.submitBtnColorRed" id="submit_btn" class="button button_red"  type="submit">Enviar</button>
+      <button v-else id="submit_btn" class="button" type="submit">Enviar</button>
     </form>
   </div>
   <div v-else class=" greeting ">
     <transition enter-active-class="animate__animated animate__fadeInLeft" name="fade" mode="in-out">
-      <h1>Gracias {{response.name}} por ponerte en contacto!</h1>
+      <h2>Gracias {{response.name}} por ponerte en contacto!</h2>
     </transition>
   </div>
 </template>
@@ -43,8 +58,8 @@ export default{
 $primary: hsl(222,80%,50%);
 
 form{
-    padding:1rem 2rem;
-    padding-bottom: 3rem;
+  padding:1rem 2rem;
+  padding-bottom: 3rem;
 }
 .feedback-input {
   color:black;
@@ -52,12 +67,12 @@ form{
   font-size: 18px;
   border-radius: 5px;
   line-height: 22px;
-  border:1px solid black;
+  border:none;
   transition: all 0.3s;
   padding: 13px;
   margin-bottom: 15px;
   width:100%;
-  box-sizing: border-box;
+  //box-sizing: border-box;
   outline:0;
 }
 
@@ -70,9 +85,10 @@ textarea {
 }
 
 [type="submit"] {
-  width: 100%;
+  margin-left: 35%;
+  width: 30%;
   background: black;
-  border-radius:5px;
+  border-radius:3rem;
   border:0;
   cursor:pointer;
   color:white;
@@ -94,5 +110,34 @@ textarea {
   width: 80%;
 }
 
+.button {
+  width: 30%;
+  height: 45px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+}
 
+.button:hover {
+  background-color: #2EE59D;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+.button_red:hover {
+  background-color: #c8140d;
+  box-shadow: 0px 15px 20px rgba(141, 19, 23, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
 </style>

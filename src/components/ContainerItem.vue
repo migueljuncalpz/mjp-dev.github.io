@@ -24,7 +24,8 @@ export default{
 </template>
 
 <style  lang="scss">
-$primary: hsl(222,80%,50%);
+
+$primary: rgb(0, 2, 7);
 $primary-light: hsl(222,50%,95%);
 
 $secondary: hsl(350,80%,50%);
