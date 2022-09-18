@@ -11,7 +11,7 @@ export default{
     <div class='typing-demo'>MJP{}Dev</div>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
 .typing-demo {
     text-align: center;
     width: 9ch;

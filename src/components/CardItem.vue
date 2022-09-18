@@ -20,7 +20,7 @@ export default{
     </div>
     <div onclick="" class="back">
       <div>
-        <h6>{{card.description}}</h6>
+        <h4>{{card.description}}</h4>
         <button class="button">GitHub</button>
       </div>
     </div>
@@ -49,19 +49,13 @@ $orange: hsl(50,80%,50%);
 .card {
   color: inherit;
   cursor: pointer;
-  width: calc(33% - 2rem);
-  min-width: calc(33% - 2rem);
-  height: 400px;
-  min-height: 400px;
+  min-width: 300px;
+  max-width: 400px;
+  min-height: 500px;
   perspective: 1000px;
   margin: 1rem;
   position: relative;
-  @include mobile (800px) {
-    width: calc(50% - 2rem);
-  }
-  @include mobile (500px) {
-    width: 100%;
-  }
+
 }
 
 .front,
@@ -85,14 +79,13 @@ $orange: hsl(50,80%,50%);
 
 .front {
   background-size: cover;
-  // background-blend-mode: overlay;
+  background-blend-mode: overlay;
   padding: 2rem;
   font-size: 1.618rem;
   font-weight: 600;
   color: #fff;
   overflow: hidden;
-  font-family: Poppins, sans-serif;
-  &:before {
+    &:before {
     position: absolute;
     display: block;
     content: '';

@@ -9,7 +9,6 @@
 
 <script>
   import Navbar from '@/components/NavbarItem';
-  import FooterVue from './components/FooterItem';
   import ContainerVue   from '@/components/ContainerItem'
 
 
@@ -17,7 +16,6 @@
     data:()=>({}),
     components:{
       Navbar,
-      FooterVue,
       ContainerVue,
     }
   }

@@ -23,7 +23,7 @@ export default{
 </div>
 </template>
 
-<style  lang="scss">
+<style scoped lang="scss">
 
 $primary: rgb(0, 2, 7);
 $primary-light: hsl(222,50%,95%);
@@ -65,19 +65,17 @@ body {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  max-width: 1000px;
+  max-width: 80vw;
 }
 
 .heading {
   width: 100%;
-  margin-left: 1rem;
   font-weight: 900;
   font-size: 1.618rem;
   text-transform: uppercase;
   letter-spacing: .1ch;
   line-height: 1;
   padding-bottom: .5em;
-  margin-bottom: 1rem;
   position: relative;
   
   &:after {
@@ -93,9 +91,7 @@ body {
 
 .description {
   width: 100%;
-  margin-top: 0;
-  margin-left: 1rem;
-  margin-bottom: 3rem;
+  font-size: larger;
 }
 
 

@@ -17,7 +17,7 @@ export default{
   provide(){
     return{
       heading:"Mis trabajos",
-      description:"mis trabajos",
+      description:"Estos son mis trabajos realizados en los últimos años. Son tanto trabajos personales como trabajos realizados en asignaturas de la carrera.",
       component:"CardVue",
       getCards:()=>this.cards
     }

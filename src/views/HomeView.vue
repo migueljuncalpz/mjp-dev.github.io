@@ -5,7 +5,7 @@ export default{
   data:()=>({}),
   provide(){
     return{
-      heading:'Inicio',
+      heading:'quien soy',
       components:'Home'
     
     }

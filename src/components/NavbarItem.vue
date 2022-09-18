@@ -5,8 +5,8 @@
     name: 'NavbarItem',
     data(){
       return{
-        scrollNav:false,
-        mobile:true,
+        scrollNav:null,
+        mobile:null,
         mobileNav:null,
         windowsWidth:null
       }
@@ -15,7 +15,8 @@
       window.addEventListener("resize",this.checkScreen);
     },
     mounted(){
-      window.addEventListener("scroll",this.updateScroll)
+      window.addEventListener("scroll",this.updateScroll);
+      window.addEventListener("load",this.checkScreen());
     },
     components:{
       HeaderItem,
@@ -36,10 +37,12 @@
         this.windowsWidth = window.innerWidth;
         if(this.windowsWidth<=750){
           this.mobile=true;
+          console.log("mobile")
           return;
         }
         this.mobile=false;
         this.mobileNav=false;
+        console.log("pc")
         return;
       }
     }
@@ -53,8 +56,8 @@
         <HeaderItem></HeaderItem>
       </div>
       <ul v-show="!mobile" class="navigation">
-        <router-link class="link" :to="{name:'home'}">Home</router-link>
-        <router-link class="link" :to="{name:'projects'}">Project</router-link>
+        <router-link class="link" :to="{name:'home'}">About</router-link>
+        <router-link class="link" :to="{name:'projects'}">Projects</router-link>
         <router-link class="link" :to="{name:'contact'}">Contact</router-link>
       </ul>
       <div class="icon ">
@@ -62,8 +65,8 @@
       </div>
       <transition name="mobile-nav">
         <ul v-show="mobileNav" class="dropdown-nav">
-          <router-link @click="toggleMobileNav" class="link" :to="{name:'home'}">Home</router-link>
-          <router-link @click="toggleMobileNav" class="link" :to="{name:'projects'}">Project</router-link>
+          <router-link @click="toggleMobileNav" class="link" :to="{name:'home'}">About</router-link>
+          <router-link @click="toggleMobileNav" class="link" :to="{name:'projects'}">Projects</router-link>
           <router-link @click="toggleMobileNav" class="link" :to="{name:'contact'}">Contact</router-link>
         </ul> 
       </transition>
@@ -71,7 +74,7 @@
   </header>
 </template>
 
-<style  lang="scss" scoped>
+<style scoped lang="scss" >
 header{
   background-color:rgba(255, 255, 255, 0.6);
   z-index: 99;

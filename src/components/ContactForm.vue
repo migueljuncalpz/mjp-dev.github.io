@@ -53,27 +53,32 @@ export default{
   </div>
 </template>
 
-<style  lang="scss">
+<style scoped lang="scss">
 
 $primary: hsl(222,80%,50%);
 
-form{
-  padding:1rem 2rem;
-  padding-bottom: 3rem;
+div{
+  width: 100%;
 }
 .feedback-input {
   color:black;
   font-weight:500;
   font-size: 18px;
-  border-radius: 5px;
-  line-height: 22px;
+  border-radius: px;
+  line-height: 30px;
   border:none;
   transition: all 0.3s;
-  padding: 13px;
   margin-bottom: 15px;
   width:100%;
-  //box-sizing: border-box;
   outline:0;
+}
+.feedback-input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  font-family: 'Montserrat';
+  font-weight: bolder;
+  opacity: 1; /* Firefox */
+}
+.feedback-input:-ms-input-placeholder{ /* Internet Explorer 10-11 */
+  font-family: inherit;
 }
 
 .feedback-input:focus { border:2px $primary}
